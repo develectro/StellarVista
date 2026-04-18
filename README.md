@@ -127,5 +127,5 @@ The simulation computes everything from first principles. Full derivations and i
 ---
 
 <p align="center">
-  <sub>Built with curiosity about the cosmos ✦</sub>
+  <sub>Built with curiosity about the cosmos ✦ by develectro (Mustafa)</sub>
 </p>
