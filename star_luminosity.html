@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+       body,html{
+        width: 100%;
+        height: 100%;
+        /* overflow: hidden; */
+        margin: 0%;
+        padding: 0%;
+       }
+       body{
+        position: relative;
+       }
+       .sky{
+        /* background-color: rgba(2, 7, 22, 0.685); */
+        background-color: #88edff;
+        background-color: #88edffd7;
+        width: 100%;
+        height: 100%;
+        margin: 0%;
+        position: absolute;
+        z-index: 1000;
+
+        
+       } 
+       .main{
+        width: 100%;
+        height: 100%;;
+        background-image: url("space.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+       }
+       .star{
+        position: absolute;
+        z-index: 2000;
+        width: 50px;
+        height: 50px;
+        left: 500px; 
+        top:200px;
+        border-radius: 50%;
+        background-color:lightyellow;
+        
+       }
+       .starbrightness{
+        position: absolute;
+        z-index: 2100;
+        width: 50px;
+        height: 50px;
+        left: 500px; 
+        top:200px;
+        border-radius: 50%;
+        background-color: rgb(255, 255, 255);
+        filter: blur(10px); 
+        box-shadow: 0 0 50px 100px rgba(255, 255, 255, 0.63);
+       
+       }
+       
+       p{
+        font-family:monospace;
+        font-size: 20px;
+        margin:10px;
+        color:white;
+       }
+    </style>
+    <title>محاكاة لسطوع النجوم</title>
+</head>
+<body>
+<!--    
+       <div class="button" id="sun">SUN</div>
+       <div class="button" id="sirius">SIRIUS</div>
+       <div class="button" id="proxim">PROXIMA</div> -->
+
+       <div class="sky"><p>Star: SUN</p></div>
+       <div class="star"></div>
+       <div class="starbrightness"></div>
+       <div class="main"></div>
+     
+        <script type="text/javascript">
+
+            let star =  document.getElementsByClassName("star")[0];
+            let starbrightness = document.getElementsByClassName("starbrightness")[0];
+            let sky= document.getElementsByClassName("sky")[0];
+            let current_star = "sun";
+            let p = document.getElementsByTagName("p")[0];
+
+             star_spec = {
+                star: "background-color",
+                starbrightness :["background-color","filter: blur()"," box-shadow"],
+                skycolor:" background-color",
+                size:[" width","height"]
+
+            }
+
+            //
+           let start =  setInterval(function(){
+                setStar();
+            },2500);
+
+           function setStar(){
+                 if(current_star == "sun"){
+                    
+                    p.innerText="Star: SIRIUS";
+                    current_star = "sirius";
+                    this.star_spec.star = "white;"+"";
+                    this.star_spec.skycolor="#b7f4ffd7"
+                    this.star_spec.size[0] ="100px"+"";
+
+                    this.star_spec.size[1] ="100px"+"";
+                    this.star_spec.starbrightness[2] ="0 0 100px 200px rgba(255, 255, 255, 0.30)" +"";
+
+
+                    //changing:
+
+                    sky.style.backgroundColor= this.star_spec.skycolor;
+                    star.style.backgroundColor = this.star_spec.star;
+                    star.style.width =    this.star_spec.size[0];
+                    star.style.height =   this.star_spec.size[1];
+                    starbrightness.style.boxShadow =  this.star_spec.starbrightness[2];
+
+                 }else if(current_star == "sirius"){
+                      p.innerText="Star: PROXIMA CENTAURI";
+                      current_star = "proxima_centauri"
+                      this.star_spec.skycolor="#25010ad7"+"";
+                      this.star_spec.star = "red"+"";
+                      this.star_spec.size[0] ="5px";
+                      this.star_spec.size[1] ="5px";
+                      this.star_spec.starbrightness[2] ="0 0 10px 20px rgba(240, 144, 0, 0.63)"+"";
+    
+
+
+                       //changing:
+
+                   sky.style.backgroundColor = this.star_spec.skycolor;
+                   star.style.backgroundColor = this.star_spec.star;
+                   star.style.width =    this.star_spec.size[0];
+                   star.style.height =   this.star_spec.size[1];
+                   starbrightness.style.boxShadow =  this.star_spec.starbrightness[2];
+                   star.style.filter =  "none";
+                   starbrightness.style.left = "480px"
+                    starbrightness.style.top = "180px"
+
+
+                 }
+
+                else if (current_star="proxima_centauri"){
+                     p.innerText="Star: SUN";
+                     current_star = "sun"
+                     this.star_spec.skycolor="#88edffd7"+"";
+                      this.star_spec.star = "lightyellow"+"";
+                      this.star_spec.size[0] ="50px"+"";
+                      this.star_spec.size[1] ="50px"+"";
+                      this.star_spec.starbrightness[2] ="0 0 50px 100px rgba(255, 255, 255, 0.63)"+"";
+
+
+                      //Changing
+                    sky.style.backgroundColor = this.star_spec.skycolor;
+                    star.style.backgroundColor = this.star_spec.star;
+                    star.style.width =    this.star_spec.size[0];
+                    star.style.height =   this.star_spec.size[1];
+                    starbrightness.style.boxShadow =  this.star_spec.starbrightness[2];
+                    starbrightness.style.left = "500px"
+                    starbrightness.style.top = "200px"
+                 }
+           }
+
+         </script>
+</body>
+</html> 
