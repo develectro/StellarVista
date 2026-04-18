@@ -142,12 +142,16 @@ const StellarRenderer = (() => {
             // Star
             starColor: computed.starColor,
             starX: width * 0.5,
-            starY: height * 0.32,
             starRadius: computeStarVisualRadius(computed),
+        };
+        // Push star down so it stays visible when large
+        const minY = state.starRadius + 10;
+        state.starY = Math.max(minY, height * 0.32);
+        Object.assign(state, {
             glowRadius: computeGlowRadius(computed),
             glowOpacity: computeGlowOpacity(computed),
             coronaRadius: computeCoronaRadius(computed),
-        };
+        });
 
         if (isComparison) {
             compTargetState = state;
@@ -309,10 +313,11 @@ const StellarRenderer = (() => {
         drawBackgroundStars({ skyBrightness: adjustedBrightness }, time, offsetX, viewW);
 
         if (tf.elevation > 0) {
+            const clampedY = Math.max(s.starRadius + 10, tf.starY);
             const adjS = {
                 ...s,
                 starX: tf.starX,
-                starY: tf.starY,
+                starY: clampedY,
                 glowOpacity: s.glowOpacity * Math.min(1, tf.elevation * 3),
             };
             drawStar(adjS, time);
